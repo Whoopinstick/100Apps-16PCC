@@ -56,12 +56,10 @@
 		0AA6FDC82503F9C60071FF07 /* 16 - Pearson Correlation Coefficients */ = {
 			isa = PBXGroup;
 			children = (
-				0AA6FDC92503F9C60071FF07 /* AppDelegate.swift */,
-				0AA6FDCB2503F9C60071FF07 /* SceneDelegate.swift */,
-				0AA6FDCD2503F9C60071FF07 /* ContentView.swift */,
 				0AA6FDCF2503F9C70071FF07 /* Assets.xcassets */,
-				0AA6FDD42503F9C70071FF07 /* LaunchScreen.storyboard */,
 				0AA6FDD72503F9C70071FF07 /* Info.plist */,
+				0AA6FDDD2503F9E50071FF07 /* Delegate */,
+				0AA6FDDE2503F9EA0071FF07 /* View */,
 				0AA6FDD12503F9C70071FF07 /* Preview Content */,
 			);
 			path = "16 - Pearson Correlation Coefficients";
@@ -73,6 +71,24 @@
 				0AA6FDD22503F9C70071FF07 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0AA6FDDD2503F9E50071FF07 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				0AA6FDC92503F9C60071FF07 /* AppDelegate.swift */,
+				0AA6FDCB2503F9C60071FF07 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		0AA6FDDE2503F9EA0071FF07 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AA6FDD42503F9C70071FF07 /* LaunchScreen.storyboard */,
+				0AA6FDCD2503F9C60071FF07 /* ContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
