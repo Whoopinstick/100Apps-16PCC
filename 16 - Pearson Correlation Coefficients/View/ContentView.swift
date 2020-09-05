@@ -12,8 +12,8 @@ struct ContentView: View {
     @State private var xText = ""
     @State private var yText = ""
     
-    @State private var x: [Int] = [1,3,5,7]
-    @State private var y: [Int] = [2,4,6,8]
+    @State private var x: [Int] = [43,21,25,42,57,59]
+    @State private var y: [Int] = [99,65,79,75,87,81]
     
     @State private var xy: [Int] = []
     @State private var xSquared: [Int] = []
@@ -99,7 +99,7 @@ struct ContentView: View {
                 Spacer()
                 
                 VStack {
-                    Text("Result Info:")
+                    Text("Result:")
                         .padding()
                     Text("r = \(result)")
                     
@@ -140,9 +140,6 @@ struct ContentView: View {
             xSquared.append(x[i] * x[i])
             ySquared.append(y[i] * y[i])
         }
-        print(xy)
-        print(xSquared)
-        print(ySquared)
         
         for i in 0..<x.count {
             xSum += Double(x[i])
@@ -151,21 +148,13 @@ struct ContentView: View {
             xSquaredSum += Double(xSquared[i])
             ySquaredSum += Double(ySquared[i])
         }
-        print("")
-        print(xSum)
-        print(ySum)
-        print(xySum)
-        print(xSquaredSum)
-        print(ySquaredSum)
         
+        //formula example from https://www.statisticshowto.com/probability-and-statistics/correlation-coefficient-formula/
         let count: Double = Double(x.count)
         let numerator = (count * xySum) - (xSum * ySum)
         let denominator = ((count * xSquaredSum) - (xSum * xSum)) * ((count * ySquaredSum) - (ySum * ySum))
         
         result = numerator / denominator.squareRoot()
-        
-        print(numerator)
-        print(denominator)
         
     }
     
