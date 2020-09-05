@@ -41,31 +41,44 @@ struct ContentView: View {
                 }
                 
                 HStack {
-                    Button("Add X Value") {}
+                    Button("Add X Value") {
+                        self.x.append(Int(self.xText) ?? 0)
+                        self.xText = ""
+                    }
                         .padding(.horizontal)
+                        .disabled(xText.isEmpty ? true : false)
+                    
                     Spacer()
-                    Button("Add Y Value") {}
+                    
+                    Button("Add Y Value") {
+                        self.y.append(Int(self.yText) ?? 0)
+                        self.yText = ""
+                    }
                         .padding(.horizontal)
+                        .disabled(yText.isEmpty ? true : false)
                 }
                 
                 Button("Calculate") {}
+                    .disabled(x.isEmpty || y.isEmpty ? true : false)
                     .padding()
                 
                 Spacer()
                 
                 HStack {
                     List {
-                        ForEach(0..<x.count) { value in
-                            Text("\(self.x[value])")
+                        ForEach(x, id: \.self) { value in
+                            Text("\(value)")
                         }
+                        .onDelete(perform: removeXItems)
                     }
                     
                     Spacer()
                     
                     List {
-                        ForEach(0..<y.count) { value in
-                            Text("\(self.y[value])")
+                        ForEach(y, id: \.self) { value in
+                            Text("\(value)")
                         }
+                        .onDelete(perform: removeYItems)
                     }
                 }
                 .padding()
@@ -85,6 +98,13 @@ struct ContentView: View {
                 Image(systemName: "info.circle")
             })
         }
+    }
+    
+    func removeXItems(at offsets: IndexSet) {
+        x.remove(atOffsets: offsets)
+    }
+    func removeYItems(at offsets: IndexSet) {
+        y.remove(atOffsets: offsets)
     }
 }
 
