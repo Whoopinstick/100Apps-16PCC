@@ -5,5 +5,6 @@ App 16 of my 100 App Challenge - https://github.com/Whoopinstick/100AppsChalleng
 16 - 16 - Pearson's Correlation Coefficients
 
 Written in Swift / SwiftUI
+formula example from https://www.statisticshowto.com/probability-and-statistics/correlation-coefficient-formula/
 
 ![PCC](./PCC.gif)
