@@ -19,11 +19,13 @@ struct ContentView: View {
     @State private var xSquared: [Int] = []
     @State private var ySquared: [Int] = []
     
+    @State private var resultsVisible = false
+    
     var body: some View {
         NavigationView {
             VStack {
                 
-                Text("Placeholder Instructions")
+                Text("Add/remove an equal number of values for both X and Y and click Calculate")
                     .padding()
                 
                 HStack {
@@ -58,8 +60,10 @@ struct ContentView: View {
                         .disabled(yText.isEmpty ? true : false)
                 }
                 
-                Button("Calculate") {}
-                    .disabled(x.isEmpty || y.isEmpty ? true : false)
+                Button("Calculate") {
+                    self.resultsVisible = true
+                }
+                .disabled(x.isEmpty || y.isEmpty || x.count != y.count ? true : false)
                     .padding()
                 
                 Spacer()
@@ -91,11 +95,19 @@ struct ContentView: View {
                     Text("Here are the results")
                     
                 }
+                .opacity(resultsVisible ? 1.0 : 0.0)
                 
             }
             .navigationBarTitle("Pearson Correlation")
-            .navigationBarItems(leading: EditButton(), trailing: Button(action: {}) {
-                Image(systemName: "info.circle")
+            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+                self.x = []
+                self.y = []
+                self.xy = []
+                self.xSquared = []
+                self.ySquared = []
+                self.resultsVisible = false
+            }) {
+                Image(systemName: "xmark.square")
             })
         }
     }
@@ -106,6 +118,11 @@ struct ContentView: View {
     func removeYItems(at offsets: IndexSet) {
         y.remove(atOffsets: offsets)
     }
+    
+    func calculate() {
+        
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
