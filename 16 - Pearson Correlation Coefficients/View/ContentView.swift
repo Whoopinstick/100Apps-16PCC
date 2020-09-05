@@ -19,6 +19,14 @@ struct ContentView: View {
     @State private var xSquared: [Int] = []
     @State private var ySquared: [Int] = []
     
+    @State private var xSum: Double = 0.0
+    @State private var ySum: Double = 0.0
+    @State private var xySum: Double = 0.0
+    @State private var xSquaredSum: Double = 0.0
+    @State private var ySquaredSum: Double = 0.0
+    
+    @State private var result: Double = 0.0
+    
     @State private var resultsVisible = false
     
     var body: some View {
@@ -62,6 +70,7 @@ struct ContentView: View {
                 
                 Button("Calculate") {
                     self.resultsVisible = true
+                    self.calculate()
                 }
                 .disabled(x.isEmpty || y.isEmpty || x.count != y.count ? true : false)
                     .padding()
@@ -92,7 +101,7 @@ struct ContentView: View {
                 VStack {
                     Text("Result Info:")
                         .padding()
-                    Text("Here are the results")
+                    Text("r = \(result)")
                     
                 }
                 .opacity(resultsVisible ? 1.0 : 0.0)
@@ -105,6 +114,12 @@ struct ContentView: View {
                 self.xy = []
                 self.xSquared = []
                 self.ySquared = []
+                self.xSum = 0.0
+                self.ySum = 0.0
+                self.xySum = 0.0
+                self.xSquaredSum = 0.0
+                self.ySquaredSum = 0.0
+                self.result = 0.0
                 self.resultsVisible = false
             }) {
                 Image(systemName: "xmark.square")
@@ -120,6 +135,37 @@ struct ContentView: View {
     }
     
     func calculate() {
+        for i in 0..<x.count {
+            xy.append(x[i] * y[i])
+            xSquared.append(x[i] * x[i])
+            ySquared.append(y[i] * y[i])
+        }
+        print(xy)
+        print(xSquared)
+        print(ySquared)
+        
+        for i in 0..<x.count {
+            xSum += Double(x[i])
+            ySum += Double(y[i])
+            xySum += Double(xy[i])
+            xSquaredSum += Double(xSquared[i])
+            ySquaredSum += Double(ySquared[i])
+        }
+        print("")
+        print(xSum)
+        print(ySum)
+        print(xySum)
+        print(xSquaredSum)
+        print(ySquaredSum)
+        
+        let count: Double = Double(x.count)
+        let numerator = (count * xySum) - (xSum * ySum)
+        let denominator = ((count * xSquaredSum) - (xSum * xSum)) * ((count * ySquaredSum) - (ySum * ySum))
+        
+        result = numerator / denominator.squareRoot()
+        
+        print(numerator)
+        print(denominator)
         
     }
     
